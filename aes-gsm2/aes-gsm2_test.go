@@ -1,4 +1,4 @@
-package aesgsm1
+package aesgsm2
 
 import (
 	"crypto/sha256"
@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestAES256GSM1(t *testing.T) {
+func TestAES256GSM2(t *testing.T) {
 
 	var (
 		passphraseForSecretKey = "this is my secret key passphrase"
@@ -22,14 +22,14 @@ func TestAES256GSM1(t *testing.T) {
 	secretKey := hash.Sum(nil)
 	fmt.Printf("secret key generated: %x\n", secretKey)
 
-	// encrypt
-	ciphertext, nonce, err := AES256GSMEncrypt(secretKey, []byte(plaintext))
+	// encrypt - no need to get return nonce
+	ciphertext, err := AES256GSMEncrypt(secretKey, []byte(plaintext))
 	if err != nil {
 		t.Error(err)
 	}
 
-	// decrypt
-	plaintextBytes, err := AES256GSMDecrypt(secretKey, ciphertext, nonce)
+	// decrypt - no need to send nonce parameter
+	plaintextBytes, err := AES256GSMDecrypt(secretKey, ciphertext)
 	if err != nil {
 		t.Error(err)
 	}
