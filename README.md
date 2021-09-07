@@ -6,4 +6,4 @@ You can do test with
 
 `$go test ./...` 
 
-Blog post(in Korean): 
+Blog post(in Korean): https://jusths.tistory.com/232
